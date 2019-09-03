@@ -13,21 +13,19 @@ const {
 
 const detectors = [];
 
-function publishToDOM(winner) {
+function publishToDOM(winningRank) {
     const detail = {
-        winningCombo: winner.getType(),
-        winningCardsIndices: winner.getWinningComboIndices()
+        winningCombo: winningRank.getType(),
+        winningCardsIndices: winningRank.getValidComboIndices()
      };
 
-    const event = new CustomEvent(WINNING_COMBO, { detail });
-
-    w.dispatchEvent(event);
+    w.dispatchEvent(new CustomEvent(WINNING_COMBO, { detail }));
 }
 
-function resolveWinningRank(results) {
+function resolveWinningRank(detectedCombos) {
     return new Promise(resolve => {
-        const candidateWinners = results.filter(
-            result => result.getIsWinner()
+        const candidateWinners = detectedCombos.filter(
+            combo => combo.getIsValid()
         );
     
         const winningRank = candidateWinners.sort(

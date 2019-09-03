@@ -98,11 +98,11 @@ export function removeLoader() {
     DOM.loader.remove();
 }
 
-export function updateLoader(msg) {
+export function updateLoader(msg, deckSize = DECK) {
     if (typeof msg === 'string') {
         DOM.loader.innerText = msg;
     } else { 
-        DOM.loaderPerc.innerText = parseInt((msg * 100 / DECK), 10);
+        DOM.loaderPerc.innerText = parseInt((msg * 100 / deckSize), 10);
     }
 }
 

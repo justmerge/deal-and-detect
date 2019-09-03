@@ -8,8 +8,8 @@ class DetectorStrategy {
         this.solver = getWorkerByType(this.type);
         this.solver.onmessage = this.handleSolverReponse.bind(this);
 
-        this.isWinner = false;
-        this.winningComboIndices = [];
+        this.isValid = false;
+        this.validComboIndices = [];
         this.notifyResult = () => {};
     }
 
@@ -17,12 +17,12 @@ class DetectorStrategy {
         console.log(`Detector '${this.type}' has replied.`);
 
         const {
-            isWinner,
-            winningCards
+            isValid,
+            cardIndices
         } = data;
 
-        this.setIsWinner(isWinner);
-        this.setWinningComboIndices(winningCards);
+        this.setIsValid(isValid);
+        this.setValidComboIndices(cardIndices);
 
         this.notifyResult(this);
     }
@@ -35,20 +35,20 @@ class DetectorStrategy {
         return this.type;
     }
 
-    getWinningComboIndices() {
-        return this.winningComboIndices;
+    getValidComboIndices() {
+        return this.validComboIndices;
     }
 
-    setWinningComboIndices(winningCards) {
-        this.winningComboIndices = winningCards;
+    setValidComboIndices(validCards) {
+        this.validComboIndices = validCards;
     }
 
-    getIsWinner() {
-        return this.isWinner;
+    getIsValid() {
+        return this.isValid;
     }
 
-    setIsWinner(isWinner) {
-        this.isWinner = isWinner;
+    setIsValid(isValid) {
+        this.isValid = isValid;
     }
 
     solve(hand) {
