@@ -48,6 +48,9 @@ function doFlip(hand) {
                 DOM.cardsBack[index].classList.toggle('flip', isFlipped);
                 DOM.cardsBack[index].classList.toggle('highlight', isHighlighted);
                 
+                // TODO: A listener for a 'transitionEnd'
+                // of the last card is necessary to avoid this
+                // ugly delayed invocation.
                 HAND === (index + 1) && setTimeout(() => {
                     invokeDetectors(hand);
                 }, (200 * HAND / 2));
@@ -71,13 +74,10 @@ function prepareHand(hand) {
 
 function publishToDetectors(hand) {
     if (FLIPPED) {
-        const detail = hand;
-        const event = new CustomEvent(
+        w.dispatchEvent(new CustomEvent(
             NEW_HAND, 
-            { detail }
-        );
-
-        window.dispatchEvent(event);
+            { detail: hand }
+        ));
     }
 }
 

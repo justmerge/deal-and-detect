@@ -1,34 +1,26 @@
 import w from 'window';
+import { DECK, EVENTS } from 'constants';
 import { 
     updateLoader,
     removeLoader
 } from 'Utils/dom';
-import { DECK, EVENTS } from 'constants';
 
 const { CARD_READY } = EVENTS;
 
 let cachedImages = 0;
 
-function getCachedCardsQuantity() {
-    return cachedImages;
-}
-
 function isDeckCached(deckSize = DECK) {
-    const cachedCardsQuantity = getCachedCardsQuantity()
+    updateLoader(cachedImages, deckSize);
 
-    updateLoader(cachedCardsQuantity, deckSize);
-
-    if (cachedCardsQuantity === deckSize) {
+    if (cachedImages === deckSize) {
         w.removeEventListener(CARD_READY, isDeckCached);
         removeLoader();
     }
 }
 
 function notifyCardReady() {
-    const cardReady = new CustomEvent(CARD_READY);
-
     cachedImages++;
-    w.dispatchEvent(cardReady);
+    w.dispatchEvent(new CustomEvent(CARD_READY));
 }
 
 export function cacheDeck(deck) {

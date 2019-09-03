@@ -2,13 +2,14 @@ export const HAND = 5;
 export const DECK = 52;
 export const TOTAL_COMBOS = 10;
 
+// TODO: evaluate using a 'Map' object
 export const EVENTS = {
     CARD_READY: 'cardReady',
     NEW_HAND: 'newHand',
-
     WINNING_COMBO: 'winningCombo'
 };
 
+// TODO: evaluate using a 'Map' object 
 export const COMBO_TYPES = {
     ROYAL_FLUSH: {
         name: 'royal flush',

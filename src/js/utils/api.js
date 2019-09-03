@@ -4,6 +4,7 @@ import { isDebugMode, getCardsFromParams } from 'Utils/debug';
 const BASE_ENDPOINT = 'https://deckofcardsapi.com/api/deck',
     DEBUG_ENDPOINT = `${BASE_ENDPOINT}/new/shuffle/?cards=`;
 
+// TODO: Find a more decoupled way to integrate the debug mode
 function resolveEndpoint(cardsCount, deckId, debugMode = false) {
     return debugMode ? 
         `${DEBUG_ENDPOINT}${getCardsFromParams()}` :
