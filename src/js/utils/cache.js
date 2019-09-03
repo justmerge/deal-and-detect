@@ -13,12 +13,12 @@ function getCachedCardsQuantity() {
     return cachedImages;
 }
 
-function isDeckCached() {
+function isDeckCached(deckSize = DECK) {
     const cachedCardsQuantity = getCachedCardsQuantity()
 
-    updateLoader(cachedCardsQuantity);
+    updateLoader(cachedCardsQuantity, deckSize);
 
-    if (cachedCardsQuantity === DECK) {
+    if (cachedCardsQuantity === deckSize) {
         w.removeEventListener(CARD_READY, isDeckCached);
         removeLoader();
     }
@@ -32,7 +32,9 @@ function notifyCardReady() {
 }
 
 export function cacheDeck(deck) {
-    w.addEventListener(CARD_READY, isDeckCached);
+    const deckSize = deck.length; 
+
+    w.addEventListener(CARD_READY, isDeckCached.bind(null, deckSize));
 
     deck.forEach(card => {
         const cardImage = w.document.createElement('img');

@@ -1,13 +1,24 @@
-import { DECK } from 'constants';
+import { HAND, DECK } from 'constants';
+import { isDebugMode, getCardsFromParams } from 'Utils/debug';
 
-const BASE_ENDPOINT = 'https://deckofcardsapi.com/api/deck';
+const BASE_ENDPOINT = 'https://deckofcardsapi.com/api/deck',
+    DEBUG_ENDPOINT = `${BASE_ENDPOINT}/new/shuffle/?cards=`;
 
-function resolveEndpoint(cardsCount, deckId) {
-    return `${BASE_ENDPOINT}/${deckId}/draw/?count=${cardsCount}`;
+function resolveEndpoint(cardsCount, deckId, debugMode = false) {
+    return debugMode ? 
+        `${DEBUG_ENDPOINT}${getCardsFromParams()}` :
+        `${BASE_ENDPOINT}/${deckId}/draw/?count=${cardsCount}`;
+}
+
+function handleDebugModeRequest(payload) {
+    return isDebugMode() ? 
+        fetch(resolveEndpoint(HAND, payload.deck_id, false))
+            .then(response => response.json()) : 
+        Promise.resolve(payload);
 }
 
 export function requestCards(cardsCount = DECK, deckId = 'new') {
-    return fetch(resolveEndpoint(cardsCount, deckId))
+    return fetch(resolveEndpoint(cardsCount, deckId, isDebugMode()))
         .then(response => {
             const { ok, status } = response;
 
@@ -15,6 +26,7 @@ export function requestCards(cardsCount = DECK, deckId = 'new') {
                 response.json() : 
                 Promise.reject(new Error(`Status code: ${status}`));
         })
+        .then(handleDebugModeRequest)
         .then(({ success, cards }) => {
             return success ? 
                 cards : 
