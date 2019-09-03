@@ -25,7 +25,7 @@ function isDeckCached(deckSize = DECK) {
 }
 
 function notifyCardReady() {
-    const cardReady = new CustomEvent('cardReady');
+    const cardReady = new CustomEvent(CARD_READY);
 
     cachedImages++;
     w.dispatchEvent(cardReady);
