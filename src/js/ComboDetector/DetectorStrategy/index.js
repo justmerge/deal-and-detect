@@ -14,12 +14,12 @@ class DetectorStrategy {
     }
 
     handleSolverReponse({ data }) {
-        console.log(`Detector '${this.type}' has replied.`);
-
         const {
             isValid,
             cardIndices
         } = data;
+
+        isValid && console.log(`${this.type} is valid.`)
 
         this.setIsValid(isValid);
         this.setValidComboIndices(cardIndices);

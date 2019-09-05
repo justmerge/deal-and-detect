@@ -33,6 +33,8 @@ function resolveWinningRank(detectedCombos) {
                 (comboA.getRank() - comboB.getRank())
         ).pop();
 
+        console.log(`${winningRank.getType().toUpperCase()} WINS`)
+
         resolve(winningRank);
     });
 }
