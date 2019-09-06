@@ -1,3 +1,5 @@
+// TODO: Avoid this map as soon as a decent worker loader is adopted.
+
 import ROYAL_FLUSH from 'worker-loader!Detectors/royal-flush.js';
 import STRAIGHT_FLUSH from 'worker-loader!Detectors/straight-flush.js';
 import FOUR_OF_A_KIND from 'worker-loader!Detectors/four-of-a-kind.js';

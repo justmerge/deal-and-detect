@@ -1,6 +1,6 @@
 import w from 'window';
 import Combo from 'ComboDetector/Combo';
-import DetectorStrategy from 'ComboDetector/DetectorStrategy';
+import DetectionStrategy from 'ComboDetector/DetectionStrategy';
 import { 
     COMBO_TYPES,
     EVENTS 
@@ -49,7 +49,7 @@ function solveHand({ detail: hand }) {
 export function initializeDetectionStrategies() {
     detectors.push(
         ...Object.keys(COMBO_TYPES).map(type =>  
-                new DetectorStrategy(new Combo(COMBO_TYPES[type]))
+                new DetectionStrategy(new Combo(COMBO_TYPES[type]))
         )
     );
 
