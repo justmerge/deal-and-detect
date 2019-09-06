@@ -1,6 +1,6 @@
 import { getWorkerByType } from 'Detectors';
 
-class DetectorStrategy {
+class DetectionStrategy {
     constructor(combo) {
         this.type = combo.getType();
         this.rank = combo.getRank();
@@ -59,4 +59,4 @@ class DetectorStrategy {
     }
 }
 
-export default DetectorStrategy;
+export default DetectionStrategy;
