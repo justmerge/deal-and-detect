@@ -1,15 +1,15 @@
 import '../scss/style.scss';
 
-import { attachDOMListeners } from 'Utils/dom';
+import { renderApp as prepareAppContext } from 'components';
 import { cacheDeck as cacheIt } from 'Utils/cache';
 import { requestCards as requestInitialDeck } from 'API';
 import { initializeDetectionStrategies } from 'ComboDetector';
 
-function initializeDeck() {
-    attachDOMListeners()
+export function initialize() {
+    prepareAppContext()
         .then(initializeDetectionStrategies)
         .then(requestInitialDeck)
         .then(cacheIt);
 }
 
-initializeDeck();
+initialize();

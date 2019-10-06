@@ -1,0 +1,79 @@
+.card {
+	margin: 10px;
+	perspective: 1000px;
+	position: relative;
+	text-align: center;
+	min-width: $card-min-width;
+	min-height: $card-min-height;
+	height: $card-height;
+	width: $card-width;
+    
+	&__face {
+		backface-visibility: hidden;
+		border: $border-width solid white;
+		border-radius: 4px;
+        box-sizing: border-box;
+		height: $face-height;
+		transition: transform .5s $easeOutQuart,
+					box-shadow .5s $easeOutQuart;
+		width: $face-width;
+		box-shadow: none;
+        
+		&::after {
+			background-image: linear-gradient(
+                to top left,
+                rgba(0, 0, 0, .4),
+                rgba(0, 0, 0, 0)
+            );
+			border-radius: 4px;
+			content: '';
+			position: absolute;
+			top: calc(-1 * #{$border-width});
+			left: calc(-1 * #{$border-width});
+			right: calc(-1 * #{$border-width});
+			bottom: calc(-1 * #{$border-width});
+			box-sizing: border-box;
+        }
+        
+		&--back {
+			background-image: url(#{$back-face-image-url});
+			background-size: cover;
+			transform: rotate3d(0, 0, 0, -0deg);
+        }
+        
+		&--front {
+			background-position: center center;
+			background-size: 105% 105%;
+			position: absolute;
+			top: 0;
+			left: 0;
+			transform: rotate3d(0, 1, 0, 180deg);
+		}
+	}
+
+	&.is-flipped {
+		.card__face--back {
+			transform: rotate3d(0, 1, 0, -180deg);
+		}
+
+		.card__face--front {
+			transform: rotate3d(0, 1, 0, -0deg);
+		}
+	}
+
+	&.is-highlighted {
+		.card__face--front {
+			transform: scale3d(1.05, 1.05, 1);
+			box-shadow: 0 0 20px rgb(250, 184, 3);
+			transition: box-shadow .5s $easeOutQuart,
+						transform .5s $easeOutQuart;
+		}
+	}
+}
+
+@for $i from 1 through 5 {
+	.card:nth-child(#{$i}n) .card__face--back,
+	.card:nth-child(#{$i}n) .card__face--front {
+		transition-delay: #{$i * 100}ms;
+	}
+}

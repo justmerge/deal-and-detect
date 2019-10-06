@@ -1,0 +1,23 @@
+.loader {
+	align-items: center;
+	background-color: black;
+	color: white;
+	display: flex;
+	font-size: 2em;
+	height: 100%;
+	justify-content: center;
+	left: 0;
+	position: absolute;
+	top: 0;
+    width: 100%;
+    
+	p {
+        animation: blink .5s ease-in-out alternate infinite;
+        
+		@keyframes blink {
+			to {
+				opacity: .5;
+			}
+		}
+	}
+}

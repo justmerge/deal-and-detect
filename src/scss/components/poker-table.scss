@@ -1,0 +1,14 @@
+.poker-table {
+  background-color: $poker-table-color;
+  background-image: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.1) 0%,
+    transparent 10%,
+    transparent 80%,
+    rgba(0, 0, 0, 0.1) 90%
+  );
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}

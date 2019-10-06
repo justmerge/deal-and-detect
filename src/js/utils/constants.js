@@ -1,12 +1,21 @@
+export const APP_ID = 'deal-and-detect';
+
 export const HAND = 5;
 export const DECK = 52;
 export const TOTAL_COMBOS = 10;
+
+export const EMPTY_HAND = [{}, {}, {}, {}, {}];
+
+export const GAME_TYPES = {
+    DEAL_AND_DETECT: 'deal-and-detect'
+};
 
 // TODO: evaluate using a 'Map' object
 export const EVENTS = {
     CARD_READY: 'cardReady',
     NEW_HAND: 'newHand',
-    WINNING_COMBO: 'winningCombo'
+    WINNING_COMBO: 'winningCombo',
+    LAST_FLIPPED: 'lastFlipped'
 };
 
 // TODO: evaluate using a 'Map' object 

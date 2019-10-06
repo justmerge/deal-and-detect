@@ -16,7 +16,7 @@ const detectors = [];
 function publishToDOM(winningRank) {
     const detail = {
         winningCombo: winningRank.getType(),
-        winningCardsIndices: winningRank.getValidComboIndices()
+        winningIndices: winningRank.getValidComboIndices()
      };
 
     w.dispatchEvent(new CustomEvent(WINNING_COMBO, { detail }));
