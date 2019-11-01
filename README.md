@@ -15,7 +15,7 @@ http://localhost:9000?debug=AS,5C,3H,0D,KS
 where each card is identifed with this pattern: `[value][suit]`. You can refer to the documentation of [Deck of Cards API](http://deckofcardsapi.com/), towards which the value of the query parameter is actually forwarded. 
 
 ## Design
-This small piece of software is written in pure ES6 and makes a heavy use of the [Web Workers API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers#Web_Workers_API).
+This small piece of software is written in pure ES6 and makes use of the [Web Workers API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers#Web_Workers_API), [CustomEvent API](https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent) and [ReactJS](https://reactjs.org).
 
 Once a hand is dealt, it is sent through the full pipe of detection strategies  - `DetectionStrategy` instances which control the detection workers. Each type of poker combination is associated with one detection strategy/worker.
 
