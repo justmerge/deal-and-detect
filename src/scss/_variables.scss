@@ -1,0 +1,14 @@
+$poker-table-color: #076324;
+
+$side-panel-width: 350px;
+
+$back-face-image-url: 'https://static.vecteezy.com/system/resources/previews/000/396/130/large_2x/vector-minimal-black-and-gold-geometric-pattern.jpg';
+$card-width: 15vw;
+$card-min-width: 120px;
+$card-height: calc(calc(#{$card-width} * .8) * 1.65);
+$card-min-height: calc(calc(#{$card-min-width} * .8) * 1.65);
+$face-width: 100%;
+$face-height: 100%;
+$border-width: calc(#{$card-width} * .03);
+
+$easeOutQuart: cubic-bezier(0.165, 0.84, 0.44, 1);

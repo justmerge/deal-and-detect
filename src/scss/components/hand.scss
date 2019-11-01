@@ -1,0 +1,24 @@
+.hand {
+	align-items: center;
+	box-sizing: border-box;
+	display: flex;
+	flex-wrap: wrap;
+    justify-content: space-evenly;
+	width: fit-content;
+	height: fit-content;
+
+	@media only screen and (max-width: 767px) {
+		position: absolute;
+		left: 0;
+		top: 4%;
+	}
+
+	&.is-highlighted {
+		.card:not(.is-highlighted) {
+			transform: scale3d(.95, .95, 1);
+			opacity: .7;
+			transition: transform .5s $easeOutQuart,
+						opacity .5s $easeOutQuart;
+		}
+	}
+}

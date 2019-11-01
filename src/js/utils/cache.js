@@ -1,37 +1,27 @@
 import w from 'window';
 import { DECK, EVENTS } from 'constants';
-import { 
-    updateLoader,
-    removeLoader
-} from 'Utils/dom';
 
 const { CARD_READY } = EVENTS;
 
-let cachedImages = 0;
+let cachedCards = 0;
 
-function isDeckCached(deckSize = DECK) {
-    updateLoader(cachedImages, deckSize);
+function notifyCardReady(deckSize) {
+    cachedCards++;
 
-    if (cachedImages === deckSize) {
-        w.removeEventListener(CARD_READY, isDeckCached);
-        removeLoader();
-    }
-}
+    const detail = { cachedCards, deckSize };
 
-function notifyCardReady() {
-    cachedImages++;
-    w.dispatchEvent(new CustomEvent(CARD_READY));
+    w.dispatchEvent(
+        new CustomEvent(CARD_READY, { detail })
+    );
 }
 
 export function cacheDeck(deck) {
-    const deckSize = deck.length; 
-
-    w.addEventListener(CARD_READY, isDeckCached.bind(null, deckSize));
+    const deckSize = deck.length;
 
     deck.forEach(card => {
         const cardImage = w.document.createElement('img');
 
-        cardImage.onload = () => notifyCardReady();
+        cardImage.onload = () => notifyCardReady(deckSize);
         cardImage.src = card.image;
     });
 }
