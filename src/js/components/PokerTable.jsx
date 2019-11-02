@@ -1,18 +1,18 @@
 
 import React from 'react';
 import Hand from 'components/Hand';
-import SidePanel from 'components/SidePanel';
+import ComboTeller from 'components/ComboTeller';
 
 function PokerTable(props) {
     const {
         winningCombo
     } = props;
 
-    // TODO implement quick ComboTeller (and remove after SidePanel is impl.)
+    // TODO remove ComboTeller when SidePanel is implemented
     return (
         <div className='poker-table container'>
             <Hand {...props} />
-            <SidePanel winningCombo={winningCombo} />
+            <ComboTeller winningCombo={winningCombo} />
         </div>
     );
 }

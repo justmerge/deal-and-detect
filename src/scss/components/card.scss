@@ -75,7 +75,7 @@
 	&.is-highlighted {
 		.card__face--front {
 			transform: scale3d(1.05, 1.05, 1);
-			box-shadow: 0 0 20px rgb(250, 184, 3);
+			box-shadow: 0 0 20px $highlight-color;
 			transition: box-shadow .5s $easeOutQuart,
 						transform .5s $easeOutQuart;
 		}

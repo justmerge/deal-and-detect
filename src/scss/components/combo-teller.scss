@@ -1,0 +1,26 @@
+.combo-teller {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    box-sizing: border-box;
+    border-bottom: 1px solid rgba(255, 255, 255, .2);
+    box-shadow: 0 5px 20px -10px black;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: white;
+    background-color: rgb(29, 27, 27);
+    text-shadow: 0 1px 5px rgba(250, 184, 3, .8);
+
+    p {
+        box-sizing: border-box;
+        padding: 1em 1em;
+        margin: 0;
+        font-size: .9em;
+        font-weight: 600;
+
+        .winning-combo {
+            text-transform: capitalize;
+        }
+    }
+}
