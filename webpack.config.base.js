@@ -4,6 +4,10 @@ const webpack = require('webpack'),
 	path = require('path'),
 	htmlPlugin = require('html-webpack-plugin');
 
+function bustCache() {
+	return new Date().getTime();
+}
+
 module.exports = {
 	entry: './src/js/main.js',
 	module: {
@@ -35,7 +39,7 @@ module.exports = {
 		}]
 	},
 	output: {
-		filename: 'js/deal-and-detect.js'
+		filename: 'js/deal-and-detect.js?v=' + bustCache()
 	},
 	resolve: {
 		extensions: ['.js', '.jsx'],

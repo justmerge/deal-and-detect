@@ -8,6 +8,7 @@ function PokerTable(props) {
         winningCombo
     } = props;
 
+    // TODO implement quick ComboTeller (and remove after SidePanel is impl.)
     return (
         <div className='poker-table container'>
             <Hand {...props} />

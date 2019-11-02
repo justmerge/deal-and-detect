@@ -7,6 +7,17 @@
 	min-height: $card-min-height;
 	height: $card-height;
 	width: $card-width;
+
+	@media only screen and (max-width: 320px) {
+		min-width: $card-min-width-xs;
+		min-height: $card-min-height-xs;
+	}
+
+	@media only screen and (min-width: 360px) and 
+		(max-width: 767px) and (max-height: 667px) {
+		min-width: $card-min-width-md;
+		min-height: $card-min-height-md;
+	}
     
 	&__face {
 		backface-visibility: hidden;
