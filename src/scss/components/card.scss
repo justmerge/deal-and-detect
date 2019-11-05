@@ -13,7 +13,7 @@
 		min-height: $card-min-height-xs;
 	}
 
-	@media only screen and (min-width: 360px) and 
+	@media only screen and (min-width: 321px) and 
 		(max-width: 767px) and (max-height: 667px) {
 		min-width: $card-min-width-md;
 		min-height: $card-min-height-md;
