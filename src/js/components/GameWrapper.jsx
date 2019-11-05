@@ -14,6 +14,7 @@ import {
 const {
     NEW_HAND,
     LAST_FLIPPED,
+    LAST_RENDERED,
     WINNING_COMBO
 } = EVENTS;
 
@@ -24,8 +25,9 @@ class GameWrapper extends Component {
         this._clearHand = this._clearHand.bind(this);
         this._dealNewHand = this._dealNewHand.bind(this);
         this._highlightCombo = this._highlightCombo.bind(this);
+        this._flipCards = this._flipCards.bind(this);
         this._publishToDetectors = this._publishToDetectors.bind(this);
-
+        
         this.initialState = {
             activeHand: EMPTY_HAND,
             currentAction: this._dealNewHand,
@@ -83,16 +85,28 @@ class GameWrapper extends Component {
         requestCards(HAND)
             .then(activeHand => {
                 this.setState({
-                    activeHand,
-                    isFlipped: true,
-                    currentAction: this._clearHand
+                    activeHand
                 }, () => {
                     w.addEventListener(
-                        LAST_FLIPPED, 
-                        this._publishToDetectors
+                        LAST_RENDERED, 
+                        this._flipCards
                     );
                 })
             });
+    }
+
+    _flipCards() {
+        w.removeEventListener(LAST_RENDERED, this._flipCards);
+
+        this.setState({
+            isFlipped: true,
+            currentAction: this._clearHand
+        }, () => {
+            w.addEventListener(
+                LAST_FLIPPED,
+                this._publishToDetectors
+            );
+        })
     }
 
     _highlightCombo({ detail }) {

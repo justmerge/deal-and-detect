@@ -15,6 +15,14 @@ function notifyLastFlippedCard() {
     }, 1000);
 }
 
+function notifyLastRenderedCard() {
+    setTimeout(() => {
+        w.dispatchEvent(
+            new CustomEvent(EVENTS.LAST_RENDERED)
+        );
+    }, 500);
+}
+
 function getBackgroundImage(url) {
     return !!url ? `url(${url})` : 'none';
 }
@@ -26,6 +34,8 @@ function Card(props) {
         isLast,
         isHighlighted
     } = props;
+
+    !isFlipped && isLast && notifyLastRenderedCard();
 
     isFlipped && isLast && notifyLastFlippedCard();
 

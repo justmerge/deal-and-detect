@@ -1,5 +1,5 @@
 import w from 'window';
-import { DECK, EVENTS } from 'constants';
+import { EVENTS } from 'constants';
 
 const { CARD_READY } = EVENTS;
 

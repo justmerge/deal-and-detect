@@ -15,6 +15,7 @@ export const EVENTS = {
     CARD_READY: 'cardReady',
     NEW_HAND: 'newHand',
     WINNING_COMBO: 'winningCombo',
+    LAST_RENDERED: 'lastRendered',
     LAST_FLIPPED: 'lastFlipped'
 };
 
