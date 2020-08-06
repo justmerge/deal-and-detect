@@ -39,7 +39,7 @@ module.exports = {
 		}]
 	},
 	output: {
-		filename: 'js/deal-and-detect.js?v=' + bustCache()
+		filename: 'index.js?v=' + bustCache()
 	},
 	resolve: {
 		extensions: ['.js', '.jsx'],
