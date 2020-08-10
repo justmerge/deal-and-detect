@@ -108,7 +108,7 @@ export function updateLoader(msg, deckSize = DECK) {
 
 export function attachDOMListeners() {
     return new Promise(done => {
-        w.addEventListener(WINNING_COMBO, highlightCards)
+        w.addEventListener(WINNING_COMBO, highlightCards);
         DOM.requestHandBtn.addEventListener('click', dealNewHand);
 
         done();
