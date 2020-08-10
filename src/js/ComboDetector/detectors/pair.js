@@ -37,7 +37,7 @@ onmessage = ({ data: hand }) => {
     prepare(hand)
         .then(solve)
         .then(cardIndices => postMessage({ 
-                isValid: cardIndices.length === 2 ? true : false, 
+                isValid: cardIndices.length === 2,
                 cardIndices
             })
         );

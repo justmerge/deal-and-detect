@@ -29,8 +29,9 @@ function prepare(hand) {
 
 function solve(sanitizedHand) {
     return new Promise(resolve => {
-        const cardIndices = filterByValue(sanitizedHand, PAIR)
-                                        .map(card => card.index);
+        const cardIndices =
+			filterByValue(sanitizedHand, PAIR)
+				.map(card => card.index);
 
         if (cardIndices.length) {
             cardIndices.push(
@@ -49,7 +50,7 @@ onmessage = ({ data: hand }) => {
     prepare(hand)
         .then(solve)
         .then(cardIndices => postMessage({ 
-                isValid: cardIndices.length === 5 ? true : false, 
+                isValid: cardIndices.length === 5,
                 cardIndices
             })
         );
