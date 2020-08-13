@@ -19,7 +19,7 @@ class DetectionStrategy {
             cardIndices
         } = data;
 
-        isValid && console.log(`${this.type} is valid.`)
+        isValid && console.log(`${this.type} is valid.`);
 
         this.setIsValid(isValid);
         this.setValidComboIndices(cardIndices);
