@@ -1,7 +1,8 @@
-import { SUIT_RANKS, sanitize } from './helper';
+import { detectCombo } from './helper';
+import { SUIT_RANKS } from './helper/constants';
 
 function getHighCardBySuitRank(hand) {
-    let highCard = hand[0];
+    let [highCard] = hand;
 
     hand.forEach((currentCard, index) => {
         const nextCard = hand[index + 1] || null;
@@ -22,8 +23,7 @@ function getHighCardBySuitRank(hand) {
 }
 
 function getHighCardByValue(hand) {
-    const firstCandidate = hand[0],
-        secondCandidate = hand[1];
+    const [firstCandidate, secondCandidate] = hand.reverse();
 
     if (firstCandidate.value === secondCandidate.value) {
         return getHighCardBySuitRank(hand);
@@ -32,32 +32,12 @@ function getHighCardByValue(hand) {
     return firstCandidate;
 }
 
-function prepare(hand) {
-    return new Promise(resolve => {
-        hand = sanitize(hand);
-
-        const sortedHandByValue = hand.sort(
-            (cardA, cardB) => (parseInt(cardB.value, 10) - parseInt(cardA.value))
-        );
-        
-        resolve(sortedHandByValue);
-    });
-}
-
 function solve(sortedHand) {
     return new Promise(resolve => {
-        const highCard = getHighCardByValue(sortedHand);
+        const {index: highCardIndex} = getHighCardByValue(sortedHand);
 
-        resolve(highCard.index);
+        resolve([highCardIndex]);
     });
 }
 
-onmessage = ({ data: hand }) => {
-    prepare(hand)
-        .then(solve)
-        .then(highCardIndex => postMessage({ 
-                isValid: true, 
-                cardIndices: [highCardIndex]
-            })
-        );
-};
+onmessage = ({ data }) => detectCombo(data.hand, data.sort, solve);

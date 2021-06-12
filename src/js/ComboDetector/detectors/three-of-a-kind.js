@@ -1,44 +1,13 @@
-import { sanitize } from './helper';
-
-function filterByValue(hand) {
-    let filteredCards = [];
-
-    for (let i = 0; i < hand.length; i++) {
-        filteredCards = hand.filter(card =>
-            hand[i].value === card.value
-        );
-
-        if (filteredCards.length === 3) {
-            break;
-        }
-    }
-
-    return filteredCards;
-}
-
-function prepare(hand) {
-    return new Promise(resolve => {
-        hand = sanitize(hand);
-        
-        resolve(hand);
-    });
-}
+import { FilterUtil, detectCombo } from './helper';
+import { VALUES } from './helper/constants';
 
 function solve(sanitizedHand) {
     return new Promise(resolve => {
-        const cardIndices = filterByValue(sanitizedHand)
-                                .map(card => card.index);
+        const cardIndices = FilterUtil.byValue(sanitizedHand, VALUES.THREE)
+            .map(card => card.index);
 
         resolve(cardIndices);
     });
 }
 
-onmessage = ({ data: hand }) => {
-    prepare(hand)
-        .then(solve)
-        .then(cardIndices => postMessage({ 
-                isValid: cardIndices.length === 3 ? true : false, 
-                cardIndices
-            })
-        );
-};
+onmessage = ({ data }) => detectCombo(data.hand, data.sort, solve);
