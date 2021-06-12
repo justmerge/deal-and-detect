@@ -11,7 +11,7 @@ import TWO_PAIR from 'worker-loader!Detectors/two-pair.js';
 import PAIR from 'worker-loader!Detectors/pair.js';
 import HIGH_CARD from 'worker-loader!Detectors/high-card.js';
 
-const ComboDetectionWorker = {
+const COMBO_DETECTION_WORKERS = {
     'royal-flush': ROYAL_FLUSH,
     'straight-flush': STRAIGHT_FLUSH,
     'four-of-a-kind': FOUR_OF_A_KIND,
@@ -25,5 +25,5 @@ const ComboDetectionWorker = {
 };
 
 export function getWorkerByType(type) {
-    return new ComboDetectionWorker[type]();
+    return new COMBO_DETECTION_WORKERS[type]();
 }

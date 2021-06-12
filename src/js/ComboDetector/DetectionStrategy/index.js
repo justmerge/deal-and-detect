@@ -4,25 +4,22 @@ class DetectionStrategy {
     constructor(combo) {
         this.type = combo.getType();
         this.rank = combo.getRank();
+        this.length = combo.getLength();
+        this.sort = combo.getIsSort();
 
         this.solver = getWorkerByType(this.type);
-        this.solver.onmessage = this.handleSolverReponse.bind(this);
+        this.solver.onmessage = this.handleSolverResponse.bind(this);
 
         this.isValid = false;
         this.validComboIndices = [];
         this.notifyResult = () => {};
     }
 
-    handleSolverReponse({ data }) {
-        const {
-            isValid,
-            cardIndices
-        } = data;
+    handleSolverResponse({ data }) {
+        const {cardIndices} = data;
 
-        isValid && console.log(`${this.type} is valid.`);
-
-        this.setIsValid(isValid);
-        this.setValidComboIndices(cardIndices);
+        this.isValid = cardIndices.length === this.length;
+        this.validComboIndices = cardIndices;
 
         this.notifyResult(this);
     }
@@ -39,22 +36,17 @@ class DetectionStrategy {
         return this.validComboIndices;
     }
 
-    setValidComboIndices(validCards) {
-        this.validComboIndices = validCards;
-    }
-
     getIsValid() {
         return this.isValid;
-    }
-
-    setIsValid(isValid) {
-        this.isValid = isValid;
     }
 
     solve(hand) {
         return new Promise(notifyResult => {
             this.notifyResult = notifyResult;
-            this.solver.postMessage(hand);
+            this.solver.postMessage({
+                hand,
+                sort: this.sort
+            });
         });
     }
 }

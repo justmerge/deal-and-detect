@@ -29,8 +29,7 @@ function resolveWinningRank(detectedCombos) {
         );
     
         const winningRank = candidateWinners.sort(
-            (comboA, comboB) =>
-                (comboA.getRank() - comboB.getRank())
+            (comboA, comboB) => comboA.getRank() - comboB.getRank()
         ).pop();
 
         console.log(`${winningRank.getType().toUpperCase()} WINS`)
@@ -49,7 +48,7 @@ function solveHand({ detail: hand }) {
 export function initializeDetectionStrategies() {
     detectors.push(
         ...Object.keys(COMBO_TYPES).map(type =>  
-                new DetectionStrategy(new Combo(COMBO_TYPES[type]))
+            new DetectionStrategy(new Combo(COMBO_TYPES[type]))
         )
     );
 
