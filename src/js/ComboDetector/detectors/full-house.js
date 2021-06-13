@@ -1,5 +1,5 @@
-import { FilterUtil, detectCombo } from './helper';
-import { VALUES } from './helper/constants';
+import { FilterUtil, detectCombo } from 'ComboDetector/helper';
+import { VALUES } from 'ComboDetector/helper/constants';
 
 function solve(sanitizedHand) {
     return new Promise(resolve => {

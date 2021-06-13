@@ -1,5 +1,5 @@
-import { detectCombo } from './helper';
-import { SUIT_RANKS } from './helper/constants';
+import { detectCombo } from 'ComboDetector/helper';
+import { SUIT_RANKS } from 'ComboDetector/helper/constants';
 
 function getHighCardBySuitRank(hand) {
     let [highCard] = hand;

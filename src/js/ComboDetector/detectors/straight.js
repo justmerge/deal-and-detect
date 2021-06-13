@@ -1,4 +1,4 @@
-import { detectCombo } from './helper';
+import { detectCombo } from 'ComboDetector/helper';
 
 function checkSequence(sortedHand) {
     let candidateStraight = [];

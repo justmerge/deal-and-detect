@@ -1,5 +1,5 @@
-import { detectCombo } from './helper';
-import { VALUES } from './helper/constants';
+import { detectCombo } from 'ComboDetector/helper';
+import { VALUES } from 'ComboDetector/helper/constants';
 
 function checkSequence(sortedHand) {
     let candidateStraight = [];
