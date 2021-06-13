@@ -17,7 +17,7 @@ where each card is identifed with this pattern: `[value][suit]`. You can refer t
 ## Design
 This small piece of software is written in pure ES6 and makes use of the [Web Workers API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers#Web_Workers_API), [CustomEvent API](https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent) and [ReactJS](https://reactjs.org).
 
-Once a hand is dealt, it is sent through the full pipe of detection strategies  - `DetectionStrategy` instances which control the detection workers. Each type of poker combination is associated with one detection strategy/worker.
+Once a hand is dealt, it is sent through the full pipe of detection strategies  - `Detector` instances which control the detection workers. Each type of poker combination is associated with one detection strategy/worker.
 
 Each detection worker checks the poker hand against a validation algorithm for the hand to be identifed as this or that type of poker combination. As soon as all the workers publish their response - the main thread is then solely in charge of deciding what the winning combination is - if more than one get detected - based on the rank.
 
