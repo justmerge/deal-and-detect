@@ -21,4 +21,4 @@ Once a hand is dealt, it is sent through the full pipe of detection strategies  
 
 Each detection worker checks the poker hand against a validation algorithm for the hand to be identifed as this or that type of poker combination. As soon as all the workers publish their response - the main thread is then solely in charge of deciding what the winning combination is - if more than one get detected - based on the rank.
 
-`Last updated: Nov 1, 2019`
+`Last updated: June 14, 2021`
