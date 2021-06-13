@@ -40,3 +40,10 @@ export const VALUES = {
     FOUR: 4,
     FIVE: 5,
 };
+
+/**
+ * Workers path string template
+ */
+
+export const DETECTORS_PATH = 
+    comboType => `Detectors/${comboType}.js`;

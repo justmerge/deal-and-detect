@@ -10,7 +10,6 @@ export const GAME_TYPES = {
     DEAL_AND_DETECT: 'deal-and-detect'
 };
 
-// TODO: evaluate using a 'Map' object
 export const EVENTS = {
     CARD_READY: 'cardReady',
     NEW_HAND: 'newHand',
@@ -19,7 +18,6 @@ export const EVENTS = {
     LAST_FLIPPED: 'lastFlipped'
 };
 
-// TODO: evaluate using a 'Map' object 
 export const COMBO_TYPES = {
     ROYAL_FLUSH: {
         length: 5,

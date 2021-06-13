@@ -3,13 +3,14 @@ import '../scss/style.scss';
 import { renderApp as prepareAppContext } from 'components';
 import { cacheDeck as cacheIt } from 'Utils/cache';
 import { requestCards as requestInitialDeck } from 'API';
-import { initializeDetectionStrategies } from 'ComboDetector';
+import { attachHandListener, registerDetectors } from 'ComboDetector';
 
 export function initialize() {
     prepareAppContext()
-        .then(initializeDetectionStrategies)
+        .then(registerDetectors)
         .then(requestInitialDeck)
-        .then(cacheIt);
+        .then(cacheIt)
+        .then(attachHandListener);
 }
 
 initialize();

@@ -1,14 +1,10 @@
-import { getWorkerByType } from 'Detectors';
-
-class DetectionStrategy {
-    constructor(combo) {
-        this.type = combo.getType();
-        this.rank = combo.getRank();
-        this.length = combo.getLength();
-        this.sort = combo.getIsSort();
-
-        this.solver = getWorkerByType(this.type);
-        this.solver.onmessage = this.handleSolverResponse.bind(this);
+class Detector {
+    constructor({length, name, rank, sort, type}) {
+        this.length = length;
+        this.name = name;
+        this.rank = rank;
+        this.sort = sort;
+        this.type = type;
 
         this.isValid = false;
         this.validComboIndices = [];
@@ -24,12 +20,12 @@ class DetectionStrategy {
         this.notifyResult(this);
     }
 
-    getRank() {
-        return this.rank;
+    getName() {
+        return this.name;
     }
 
-    getType() {
-        return this.type;
+    getRank() {
+        return this.rank;
     }
 
     getValidComboIndices() {
@@ -38,6 +34,14 @@ class DetectionStrategy {
 
     getIsValid() {
         return this.isValid;
+    }
+
+    initialize() {
+        return import(`worker-loader!Detectors/${this.type}.js`)
+            .then(({default: SolverWorker}) => {
+                this.solver = SolverWorker();
+                this.solver.onmessage = this.handleSolverResponse.bind(this);
+            });
     }
 
     solve(hand) {
@@ -51,4 +55,4 @@ class DetectionStrategy {
     }
 }
 
-export default DetectionStrategy;
+export default Detector;
