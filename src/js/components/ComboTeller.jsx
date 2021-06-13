@@ -6,7 +6,7 @@ function ComboTeller(props) {
     return(
         <div className={'combo-teller'}>
             <p><span className={!!winningCombo ? 'winning-combo' : ''}>{
-                !!winningCombo ? winningCombo.split('-').join(' ') : 'Deal a new hand...'
+                !!winningCombo ? winningCombo : 'Deal a new hand...'
             }</span></p>
         </div>
     );
